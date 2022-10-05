@@ -1,0 +1,26 @@
+CREATE VORTEX | EDGE
+
+--- # Buat nama VERTEX | EDGE lalu statementnya
+--- # Pembuatan VERTEX | EDGE dilakukan di GLOBAL SCHEMA
+
+USE GLOBAL
+  CREATE VERTEX AKU (PRIMARY_ID namaku STRING, totalitas INT, usaha INT, Baper BOOL) WITH primary_id_as_attribute="true"
+  CREATE VERTEX KAMU (PRIMARY_ID namamu STRING, skincaremu INT, makeup INT, Sayang_juga BOOL) WITH primary_id_as_attribute="true"
+  CREATE DIRECTED EDGE SAYANG (From AKU, To KAMU) WITH REVERSE_EDGE="reverse_SAYANG"
+  
+  
+--- # Pembuatan VERTEX | EDGE dilakukan di GRAPH SCHEMA (Schema yang dibuat pada GUI atau GSQL
+
+CREATE GRAPH pinet (AKU, KAMU, SAYANG) # Menggunakan VERTEX dan EDGE pilihan
+CREATE GRAPH pinet (*) 				 # Menggunakan semua VERTEX dan EDGE  yang ada pada Global
+CREATE GRAPH pinet ()				 # Membuat GRAPH tanpa menggunakan VERTEX dan EDGE atau Graph (kosong)
+
+--- # Membuat VERTEX | EDGE tanpa menggunakan GLOBAL
+--- # Case dengan Edge LOOPING pada 1 VERTEX
+
+CREATE SCHEMA_CHANGE JOB Menikah {
+ADD VERTEX KITA(PRIMARY_ID TGL_JADIAN STRING, TANGGAL_NIKAH DATETIME) WITH STATS="OUTDEGREE_BY_EDGETYPE", PRIMARY_ID_AS_ATTRIBUTE="true";
+ADD UNDIRECTED EDGE SERIUS(FROM KITA, TO KITA);
+}
+
+RUN SCHEMA_CHANGE JOB Menikah
