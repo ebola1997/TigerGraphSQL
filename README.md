@@ -9,3 +9,10 @@ Create Loading Job (Load data yang sudah dimapping sesuai map) proses ETL
 
 
 ---- Scriptnya cuma script basic, script lainnya (pembuatanan data stream, mapping dengan function, loading data json) di private repo
+
+---------####-----
+
+Output Query 1 & 2
+
+![image](https://user-images.githubusercontent.com/59966599/197401283-d66fb478-1dde-46f5-8935-de59fe773ad9.png)
+
